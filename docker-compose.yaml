@@ -47,20 +47,21 @@ services:
       - laravel_enviroment
     volumes:
       - /WIN/kubernetes_data/data:/var/lib/mysql
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin:latest
-  #   restart: always
-  #   container_name: phpmyadmin_laravel_enviroment
-  #   depends_on:
-  #     - mysql
-  #   ports:
-  #     - '8891:80'
-  #   environment:
-  #     - PMA_HOST=mysql
-  #     - PMA_USER=root
-  #     - PMA_PASSWORD=secret
-  #   networks:
-  #     - laravel_enviroment
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    container_name: phpmyadmin_laravel_enviroment
+    depends_on:
+      - mysql
+    ports:
+      - '8891:80'
+    environment:
+      - PMA_HOST=mysql_laravel_enviroment
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    networks:
+      - laravel_enviroment
   # redis:
   #   image: redis:alpine
   #   container_name: redis_laravel_enviroment
